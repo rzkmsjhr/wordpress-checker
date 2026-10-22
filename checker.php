@@ -5,11 +5,11 @@
  */
 
 // 1. Optional: Set a secret key so only you can view it (e.g., yoursite.com/wp-security-check.php?key=check123)
-$access_key = 'check123'; 
+$access_key = 'check7Q2xk123nsbdpqafi93';
 
 if (!isset($_GET['key']) || $_GET['key'] !== $access_key) {
     http_response_code(403);
-    die('403 Forbidden: Append ?key=' . htmlspecialchars($access_key) . ' to the URL to view the report.');
+    die('403 Forbidden: Append the key to the URL to view the report.');
 }
 
 // 2. Self-destruct handler
@@ -25,7 +25,6 @@ if (isset($_POST['self_destruct']) && $_POST['self_destruct'] === '1') {
 $current_php = PHP_VERSION;
 $major_minor = PHP_MAJOR_VERSION . '.' . PHP_MINOR_VERSION;
 $patched_baselines = [
-    '8.1' => '8.1.34',
     '8.2' => '8.2.35',
     '8.3' => '8.3.36',
     '8.4' => '8.4.27',
@@ -35,7 +34,7 @@ $patched_baselines = [
 $php_status = 'WARN';
 $php_msg = '';
 
-if (version_compare($major_minor, '8.1', '<')) {
+if (version_compare($major_minor, '8.2', '<')) {
     $php_status = 'FAIL';
     $php_msg = "PHP $current_php is End-of-Life (EOL) and no longer receives upstream security patches.";
 } elseif (isset($patched_baselines[$major_minor])) {
